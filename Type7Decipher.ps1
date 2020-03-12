@@ -119,11 +119,12 @@ $Button1.Add_Click({
     else {
 
       try {
-    $Button1.location = New-Object System.Drawing.Point(110,100)
+    
     $result = Unprotect-CiscoPassword7 $TextBox1.Text
     $test = $true
 
     if ($test = $true) {
+    $Button1.location = New-Object System.Drawing.Point(110,100)
     $TextBox2.Visible = $True
     $TextBox2.Text = $result
     $Button2.Visible = $True
