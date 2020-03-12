@@ -161,5 +161,13 @@ $Button1.Add_Click({
 
     })
 
+$Button1.Add_MouseUP( {
+        if ($_.Button -eq [System.Windows.Forms.MouseButtons]::Right ) {
+            [System.Windows.MessageBox]::Show("   |\__/,|   (`\
+  _.|o o  |_   ) )
+-(((---(((--------","noob !")}
+        })
+
+
 
 $Form.ShowDialog()
