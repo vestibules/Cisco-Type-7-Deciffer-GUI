@@ -21,6 +21,15 @@ $TextBox1.height                 = 20
 $TextBox1.location               = New-Object System.Drawing.Point(7,35)
 $TextBox1.Font                   = 'Microsoft Sans Serif,10'
 
+
+$TextBox2                        = New-Object system.Windows.Forms.TextBox
+$TextBox2.multiline              = $false
+$TextBox2.width                  = 382
+$TextBox2.height                 = 20
+$TextBox2.location               = New-Object System.Drawing.Point(7,60)
+$TextBox2.Font                   = 'Microsoft Sans Serif,10'
+$TextBox2.Visible                = $False
+
 $Button1                         = New-Object system.Windows.Forms.Button
 $Button1.text                    = "Déchiffrer "
 $Button1.width                   = 90
@@ -29,14 +38,14 @@ $Button1.location                = New-Object System.Drawing.Point(160,72)
 $Button1.Font                    = 'Microsoft Sans Serif,10'
 
 $Button2                         = New-Object system.Windows.Forms.Button
-$Button2.text                    = "Chiffrer"
+$Button2.text                    = "Réinitaliser"
 $Button2.width                   = 90
 $Button2.height                  = 30
 $Button2.location                = New-Object System.Drawing.Point(160,73)
 $Button2.Font                    = 'Microsoft Sans Serif,10'
 $Button2.Visible                 = $False
 
-$Form.controls.AddRange(@($Label1,$TextBox1,$Button1,$Button2))
+$Form.controls.AddRange(@($Label1,$TextBox1,$TextBox2,$Button1,$Button2))
 
 function Unprotect-CiscoPassword7 {
 
@@ -98,20 +107,55 @@ function Unprotect-CiscoPassword7 {
 
 $Button1.Add_Click({
 
-      try {
+    
+    if (!$TextBox1.Text){
+    $TextBox1.Text = "J'ai faim, donnez - moi un Hash à manger !"
+    }
 
+    else {
+
+      try {
+    $Button1.location = New-Object System.Drawing.Point(110,100)
     $result = Unprotect-CiscoPassword7 $TextBox1.Text
-    $TextBox1.Text = $result 
+    $test = $true
+
+    if ($test = $true) {
+    $TextBox2.Visible = $True
+    $TextBox2.Text = $result
+    $Button2.Visible = $True
+    $Button2.location = New-Object System.Drawing.Point(210,100)
+    $Form.ClientSize  = '400,150'
+    
+                        }
     
 
           }
 
     catch {
 
-    $TextBox1.Text = "Erreur"
+    $TextBox1.Text = "Le Hash saisi est invalide ! "
+    $Button1.location = New-Object System.Drawing.Point(160,72)
+    $TextBox2.Visible = $False
+    $Button2.Visible = $False
+    $Form.ClientSize = '400,124'
+
+
 
           }
        
- })
+ }})
+
+ $Button2.Add_Click({
+
+    $TextBox2.Visible = $False
+    $Button2.Visible = $False
+    $Form.ClientSize = '400,124'
+    $Button1.location = New-Object System.Drawing.Point(160,72)
+    $TextBox1.Text = $null
+
+
+
+    })
+
 
 $Form.ShowDialog()
