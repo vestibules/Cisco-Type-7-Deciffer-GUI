@@ -110,6 +110,10 @@ $Button1.Add_Click({
     
     if (!$TextBox1.Text){
     $TextBox1.Text = "J'ai faim, donnez - moi un Hash à manger !"
+    $TextBox2.Visible = $False
+    $Button2.Visible = $False
+    $Form.ClientSize = '400,124'
+    $Button1.location = New-Object System.Drawing.Point(160,72)
     }
 
     else {
