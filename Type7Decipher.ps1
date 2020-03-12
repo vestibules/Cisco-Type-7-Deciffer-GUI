@@ -3,7 +3,7 @@
 
 $Form                            = New-Object system.Windows.Forms.Form
 $Form.ClientSize                 = '400,124'
-$Form.text                       = "SERF Cisco Type 7 Deciffer"
+$Form.text                       = "SERF Cisco Type 7 Decipher"
 $Form.TopMost                    = $false
 
 $Label1                          = New-Object system.Windows.Forms.Label
